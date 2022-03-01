@@ -5,8 +5,8 @@
 
 # Welcome to my GitHub page!
 
-![GitHub followers](https://img.shields.io/github/followers/StuckDuck7710?style=social)
-![GitHub stars](https://img.shields.io/github/stars/StuckDuck7710?logo=github&style=social)
+![GitHub followers](https://img.shields.io/github/followers/s7uck?style=social)
+![GitHub stars](https://img.shields.io/github/stars/s7uck?logo=github&style=social)
 
 [![Telegram channel](https://img.shields.io/badge/dynamic/json?color=blue&logo=telegram&label=Telegram&query=result&suffix=%20subscribers&url=https%3A%2F%2Fapi.telegram.org%2Fbot1861542114%3AAAFEySytSsmFuQ4BslQv22XfBh636O36eNs%2FgetChatMemberCount%3Fchat_id%3D-1001388295920)](https://t.me/StuckDuck)
 [![Twitter profile](https://img.shields.io/twitter/follow/StuckDuck?style=flat&logo=twitter&color=blue)](https://twitter.com/StuckDuck)
@@ -24,9 +24,8 @@
 
 <section id='stats'>
 
-| Stats | Top languages |
-| :---: | :-----------: |
-| ![My GitHub stats](https://github-readme-stats.vercel.app/api?username=StuckDuck7710&include_all_commits=true&count_private=true&show_icons=true&theme=github_dark) | ![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=StuckDuck7710&layout=compact&theme=github_dark) |
+![My GitHub stats](https://github-readme-stats.vercel.app/api?username=s7uck&include_all_commits=true&count_private=true&show_icons=true&theme=github_dark) 
+![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=s7uck&layout=compact&theme=github_dark)
 
 </section>
 
