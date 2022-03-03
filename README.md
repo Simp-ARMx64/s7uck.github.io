@@ -1,7 +1,7 @@
 <section id='intro'>
 
 <!-- my propic -->
-<img src="https://avatars.githubusercontent.com/u/71439748?v=4" width="50px" />
+<img src="https://avatars.githubusercontent.com/u/71439748" width="50px" />
 
 # Welcome to my GitHub page!
 
