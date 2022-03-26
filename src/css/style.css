@@ -1,0 +1,199 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.css');
+@import url('webbidings.css');
+@font-face {
+	font-family: 'Roboto Mono NF';
+	src: url('../../res/fonts/RobotoMonoNF.ttf');
+}
+@font-face {
+	font-family: 'Roboto Hieroglyphs';
+	src: url('https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Mu72xKOzY.woff2') format('woff2');
+	unicode-range: U+10996;
+}
+@font-face {
+  font-family: 'Material Icons';
+  src: url('../../res/fonts/MaterialIcons.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+	--document-padding: 0;
+	--min-padding: 4px;
+	--standard-padding: 8px;
+	--max-padding: 10px;
+	--section-padding: 16px;
+
+	--body-margin: clamp(0px, 10%, 25%);
+
+	--card-width: clamp(80%, 30px, 30px);
+	--propic-size: 68px;
+	--propic-source: url('https://avatars.githubusercontent.com/u/71439748');
+
+	--font: 'Segoe UI', sans-serif;
+	--monospace-font: 'Roboto Mono NF';
+	--title-font: var(--monospace-font); --title-size: 2.5rem; --title-weight: bold;
+	--icon-font: 'Material Icons'; --icon-size: 1.2em; --icon-weight: regular; --icon-margin: 2px;
+	--nav-link-font: var(--monospace-font); --nav-link-size: 1rem;
+	--hieroglyphs: 'Roboto Hieroglyphs';
+
+	--on-top: 10;
+	--in-between: 5;
+	--normal: 0;
+	--behind-content: -5;
+
+	--control-corner-radius: 3px;
+	--section-corner-radius: 6px;
+	--circle: 50%;
+	--section-box-shadow: 0px 3px 6px;
+
+	--animation: 250ms ease;
+}
+@media (prefers-reduced-motion) {
+	:root {
+		--animation: 0ms;
+	}
+}
+
+* {
+	font-family: var(--font);
+
+	color: var(--foreground);
+
+	transition: var(--animation);
+}
+
+html {
+	margin: var(--document-padding);
+	padding: var(--document-padding);
+
+	height: 100vh;
+}
+
+body {
+	margin-top: var(--document-padding);
+	margin-bottom: var(--document-padding);
+	margin-left: var(--body-margin);
+	margin-right: var(--body-margin);
+
+	height: 100%;
+
+	background: var(--background);
+	box-shadow: var(--section-shadow);
+}
+
+header, footer {
+	display: block;
+
+	padding-top: var(--section-padding);
+	padding-bottom: var(--section-padding);
+	z-index: var(--on-top);
+}
+
+footer, aside {
+	background: var(--background-20);
+}
+
+footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+
+	width: calc(100vw - var(--max-padding) * 2);
+
+	text-align: center;
+}
+
+section {
+	display: block;
+}
+:not(main) section:not(:target) {
+	display: none;
+}
+
+nav {
+	display: inline-block;
+	vertical-align: middle;
+}
+nav a {
+	font-family: var(--monospace-font);
+	text-decoration: none;
+
+	color: var(--bright-blue);
+}
+nav.primary, nav a:hover {
+	color: var(--primary);
+}
+nav a::before {
+	content: attr(icon) ' ';
+}
+nav a::after {
+	content: attr(title) ' ';
+}
+
+@media only screen and (max-width: 800px) {
+	nav a:not(.primary)::after {
+		display: none;
+	}
+}
+
+nav.social a {
+	color: var(--foreground-20);
+}
+nav.social a:hover {
+	color: var(--foreground);
+}
+
+article {
+	max-width: 80ch;
+}
+
+gl {
+	display: grid;
+}
+gl li {
+	padding: var(--standard-padding);
+
+	width: var(--card-width);
+	height: var(--card-width);
+
+	list-style: none;
+
+	background-image: attr(img);
+
+	border-radius: var(--standard-padding);
+}
+
+.stuck {
+	font-family: var(--monospace-font);
+
+	color: var(--primary);
+}
+.stuck::after {
+	content: ' \10996';
+
+	font-family: var(--hieroglyphs);
+}
+
+icon,
+nav a::before {
+	font-family: var(--icon-font);
+	font-size: var(--icon-size);
+	vertical-align: middle;
+}
+
+img.propic {
+	width: var(--propic-size);
+	height: var(--propic-size);
+
+	background-image: var(--propic-source);
+	background-size: contain;
+	background-repeat: no-repeat;
+
+	border-radius: var(--circle);
+}
+
+icon.propic {
+	width: var(--icon-size);
+	height: var(--icon-size);
+}

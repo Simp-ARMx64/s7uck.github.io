@@ -1,0 +1,39 @@
+:root {
+	--purple: #7085B2;
+	--bright-purple: #A36FA0;
+	--blue: #047DCC;
+	--bright-blue: #67BDF0;
+	--cyan: #3A96DD;
+	--bright-cyan: #FFC3D6;
+	--black: #0D1117;
+	--bright-black: #161B22;
+	--red: #F82F1D;
+	--bright-red: #FA776D;
+	--green: #02B756;
+	--bright-green: #178444;
+	--yellow: #FFD70E;
+	--bright-yellow: #DDA124;
+	--white: #CCCCCC;
+	--bright-white: #F2F2F2;
+
+	--primary: var(--purple);
+
+	--background-10: var(--black);
+	--background-20: var(--bright-black);
+	--foreground-10: var(--bright-white);
+	--foreground-20: var(--white);
+
+	--background: var(--background-10);
+	--foreground: var(--foreground-10);
+
+	--selection-background: var(--foreground);
+	--cursor-color: var(--foreground);
+}
+@media (prefers-color-scheme: light) {
+	:root {
+		--background-10: var(--bright-white);
+		--background-20: var(--white);
+		--foreground-10: var(--black);
+		--foreground-20: var(--bright-black);
+	}
+}
