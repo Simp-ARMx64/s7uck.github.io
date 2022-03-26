@@ -1,0 +1,1 @@
+window.location.hash = '#_home';
