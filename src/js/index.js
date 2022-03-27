@@ -36,12 +36,3 @@ telegramApiRequest(
 		stuckloungeLink.attr('subs', socials.telegram.subCount);
 	}
 );
-
-telegramApiRequest(
-	'getChat',
-	[`chat_id=${socials.telegram.stucklounge}`],
-	then =(data)=> {
-		let pinnedMessage = data.result.pinned_message;
-		$('#motd').html(`<script async src="https://telegram.org/js/telegram-widget.js?18" data-telegram-post="stucklounge/${pinnedMessage}" data-width="100%" data-color="7085B2"></script>`);
-	}
-);

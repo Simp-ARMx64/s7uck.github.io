@@ -134,20 +134,17 @@ main section, section:target {
 }
 
 info {
+	display: block;
+
 	padding: var(--standard-padding);
+
+	min-width: fit-content;
 
 	border-radius: var(--section-corner-radius);
 	background: var(--background-20);
-	color: var(--foreground-20);
 }
 info::before {
 	content: attr(class) ' ';
-}
-info.warning {
-	background: var(--yellow);
-}
-info.error {
-	background: var(--red);
 }
 
 a {
@@ -215,7 +212,8 @@ nav.social a[subs]:hover::before {
 	transition: var(--animation);
 }
 
-article {
+article,
+info {
 	max-width: 80ch;
 }
 article section, article > .comments {
