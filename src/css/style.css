@@ -67,6 +67,7 @@
 
 	color: var(--foreground);
 
+	scroll-behavior: smooth;
 	transition: var(--animation);
 }
 
@@ -92,6 +93,11 @@ body > div.content {
 	margin-right: var(--content-margin);
 
 	padding-bottom: var(--content-padding);
+}
+
+:focus {
+	outline: none;
+	color: var(--primary);
 }
 
 header, footer {
@@ -122,6 +128,13 @@ section {
 }
 :not(main) section:not(:target) {
 	display: none;
+}
+
+a {
+	color: var(--primary);
+}
+a:hover, a:focus, a:active {
+	color: var(--bright-purple);
 }
 
 nav {
@@ -167,6 +180,15 @@ nav.social a[subs]::after {
 
 	border-radius: var(--control-corner-radius);
 	background: var(--background-10);
+
+	transition: var(--animation);
+}
+nav.social a[subs]:hover::after {
+	content: '++';
+
+	background: var(--primary);
+
+	transition: var(--animation);
 }
 
 article {
