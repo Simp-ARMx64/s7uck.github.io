@@ -22,7 +22,7 @@
 	--min-padding: 4px;
 	--standard-padding: 8px;
 	--max-padding: 10px;
-	--section-padding: 16px;
+	--section-padding: var(--max-padding);
 
 	--content-margin: clamp(0px, 10%, 25%);
 	--content-padding: 10%;
@@ -53,7 +53,7 @@
 }
 @media only screen and (max-width: 800px) {
 	:root {
-		--content-padding: 20%;
+		--content-padding: 25%;
 	}
 }
 @media (prefers-reduced-motion) {
@@ -129,36 +129,60 @@ section {
 :not(main) section:not(:target) {
 	display: none;
 }
+main section, section:target {
+	display: block !important;
+}
+
+info {
+	padding: var(--standard-padding);
+
+	border-radius: var(--section-corner-radius);
+	background: var(--background-20);
+	color: var(--foreground-20);
+}
+info::before {
+	content: attr(class) ' ';
+}
+info.warning {
+	background: var(--yellow);
+}
+info.error {
+	background: var(--red);
+}
 
 a {
 	color: var(--primary);
 }
-a:hover, a:focus, a:active {
+a:hover, a:focus, a:active, a:visited {
 	color: var(--bright-purple);
 }
 
 nav {
-	display: inline-block;
-	vertical-align: middle;
+	display: block;
+
+	margin: var(--min-padding);
 }
 nav a {
+	margin-left: var(--min-padding);
+	margin-right: var(--min-padding);
+
 	font-family: var(--monospace-font);
 	text-decoration: none;
 
-	color: var(--bright-blue);
+	color: var(--primary);
 }
 nav.primary, nav a:hover {
-	color: var(--primary);
+	color: var(--bright-purple);
 }
 nav a::before {
 	content: attr(icon) ' ';
 }
 nav a::after {
-	content: attr(title) ' ';
+	content: attr(title);
 }
 
 @media only screen and (max-width: 800px) {
-	nav:not(.social) a:not(.primary)::after {
+	nav a:not(.primary)::after {
 		display: none;
 	}
 }
@@ -170,7 +194,7 @@ nav.social a:hover {
 	color: var(--foreground);
 }
 .sub-counter,
-nav.social a[subs]::after {
+nav.social a[subs]::before {
 	content: attr(subs);
 
 	margin: var(--min-padding);
@@ -183,7 +207,7 @@ nav.social a[subs]::after {
 
 	transition: var(--animation);
 }
-nav.social a[subs]:hover::after {
+nav.social a[subs]:hover::before {
 	content: '++';
 
 	background: var(--primary);
@@ -193,6 +217,19 @@ nav.social a[subs]:hover::after {
 
 article {
 	max-width: 80ch;
+}
+article section, article > .comments {
+	display: block;
+}
+
+details > summary > * {
+	display: inline;
+}
+details > summary {
+	list-style: none;
+}
+details > summary::before {
+	content: attr(icon);
 }
 
 gl {
@@ -211,6 +248,13 @@ gl li {
 	border-radius: var(--standard-padding);
 }
 
+ul > li {
+	list-style: '├ ';
+}
+ul > li:last-of-type {
+	list-style: '└ ';
+}
+
 .stuck {
 	font-family: var(--monospace-font);
 
@@ -223,19 +267,26 @@ gl li {
 }
 
 icon,
-nav a::before {
+nav a:not([subs])::before,
+details > summary::before,
+info::before {
 	font-family: var(--icon-font);
 	font-size: var(--icon-size);
 	vertical-align: middle;
 }
 
-img.propic {
-	width: var(--propic-size);
-	height: var(--propic-size);
-
+.propic {
 	background-image: var(--propic-source);
 	background-size: contain;
 	background-repeat: no-repeat;
+}
+
+img.propic {
+	margin-top: var(--min-padding);
+	margin-bottom: var(--min-padding);
+
+	width: var(--propic-size);
+	height: var(--propic-size);
 
 	border-radius: var(--circle);
 }
@@ -243,4 +294,6 @@ img.propic {
 icon.propic {
 	width: var(--icon-size);
 	height: var(--icon-size);
+
+	border-radius: var(--circle);
 }

@@ -1,9 +1,9 @@
-window.location.hash = '#_home';
-
 let socials = {
 	telegram: {
 		me: 211772602,
 		stucklounge: -1001388295920,
+		stucklings: -1001565929365,
+		portal: -1001542175762,
 		bot: '1861542114:AAFEySytSsmFuQ4BslQv22XfBh636O36eNs',
 		api: 'https://api.telegram.org/bot'
 	},
@@ -13,16 +13,36 @@ let socials = {
 	youtube: 'UCVX9qM9QKKpQQ8PXSRWs_NA'
 };
 
-fetch(
-`${socials.telegram.api}${socials.telegram.bot}/getChatMemberCount?chat_id=${socials.telegram.stucklounge}`
-)
-.then( (response) => { return response.json() } )
-.then( (data) => {
-	let subCount = data.result;
-	socials.telegram[`subCount`] = subCount;
+function telegramApiRequest(method, args, then =(data)=> {}) {
+	let result = {};
+	fetch(
+	`${socials.telegram.api}${socials.telegram.bot}/${method}?${args.join('&')}`
+	)
+	.then( (response) => { return response.json() } )
+	.then( (data) => {
+		then(data);
+		result = data;
+		return result;
+	});
+};
 
-	let stuckloungeLink = $('nav.social a.telegram.stucklounge');
-	stuckloungeLink.attr('subs', socials.telegram.subCount ?? '++');
+telegramApiRequest(
+	'getChatMemberCount',
+	[`chat_id=${socials.telegram.stucklounge}`],
+	then =(data)=> {
+		socials.telegram[`subCount`] = data.result;
 
-	return subCount;
-});
+		let stuckloungeLink = $('nav.social a.telegram.stucklounge');
+		stuckloungeLink.attr('subs', socials.telegram.subCount);
+	}
+);
+
+telegramApiRequest(
+	'getChat',
+	[`chat_id=${socials.telegram.stucklounge}`],
+	then =(data)=> {
+		let pinnedMessage = data.result.pinned_message;
+		console.log(pinnedMessage);
+		$('#motd').html(`<script async src="https://telegram.org/js/telegram-widget.js?18" data-telegram-post="stucklounge/${pinnedMessage}" data-width="100%" data-color="7085B2"></script>`);
+	}
+);
