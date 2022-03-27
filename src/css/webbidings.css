@@ -7,6 +7,7 @@
 	--bright-cyan: #FFC3D6;
 	--black: #0D1117;
 	--bright-black: #161B22;
+	--plain-black: black;
 	--red: #F82F1D;
 	--bright-red: #FA776D;
 	--green: #02B756;
@@ -15,6 +16,9 @@
 	--bright-yellow: #DDA124;
 	--white: #CCCCCC;
 	--bright-white: #F2F2F2;
+	--plain-white: white;
+	--grey: #D8DEE4;
+	--dark-grey: #21262D;
 
 	--primary: var(--purple);
 
@@ -28,12 +32,14 @@
 
 	--selection-background: var(--foreground);
 	--cursor-color: var(--foreground);
+	--border-muted: var(--dark-grey);
 }
 @media (prefers-color-scheme: light) {
 	:root {
-		--background-10: var(--bright-white);
+		--background-10: var(--plain-white);
 		--background-20: var(--white);
 		--foreground-10: var(--black);
 		--foreground-20: var(--bright-black);
+		--border-muted: var(--grey);
 	}
 }
