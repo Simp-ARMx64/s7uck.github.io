@@ -1,24 +1,11 @@
 window.location.hash = '#_home';
 
-let telegramSubCount = (chat, api, token) => {
-	let resource = `${api}${token}/getChatMemberCount?chat_id=${chat}`;
-	let response = fetch(resource)
-	               .then((response) => {
-	               		return response.json();
-	               })
-								 .then((data) => {
-		             		result = JSON.parse(data).result ?? -1;
-	               });
-	console.log(response);
-};
-
 let socials = {
 	telegram: {
 		me: 211772602,
 		stucklounge: -1001388295920,
 		bot: '1861542114:AAFEySytSsmFuQ4BslQv22XfBh636O36eNs',
-		api: 'https://api.telegram.org/bot',
-		subCount: 0
+		api: 'https://api.telegram.org/bot'
 	},
 	github: {
 		me: 71439748
@@ -26,10 +13,16 @@ let socials = {
 	youtube: 'UCVX9qM9QKKpQQ8PXSRWs_NA'
 };
 
-socials.telegram.subCount = telegramSubCount(
-	socials.telegram.stucklounge,
-	socials.telegram.api, socials.telegram.bot
-);
+fetch(
+`${socials.telegram.api}${socials.telegram.bot}/getChatMemberCount?chat_id=${socials.telegram.stucklounge}`
+)
+.then( (response) => { return response.json() } )
+.then( (data) => {
+	let subCount = data.result;
+	socials.telegram[`subCount`] = subCount;
 
-let stuckloungeLink = $('nav.social a.telegram.stucklounge');
-stuckloungeLink.attr('subs', socials.telegram.subCount);
+	let stuckloungeLink = $('nav.social a.telegram.stucklounge');
+	stuckloungeLink.attr('subs', socials.telegram.subCount ?? '++');
+
+	return subCount;
+});
