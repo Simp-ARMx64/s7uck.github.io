@@ -73,7 +73,7 @@
 html, body {
 	margin: var(--document-padding);
 	padding: var(--document-padding);
-	
+
 	height: 100vh;
 }
 
@@ -145,7 +145,7 @@ nav a::after {
 }
 
 @media only screen and (max-width: 800px) {
-	nav a:not(.primary)::after {
+	nav:not(.social) a:not(.primary)::after {
 		display: none;
 	}
 }
@@ -155,6 +155,18 @@ nav.social a {
 }
 nav.social a:hover {
 	color: var(--foreground);
+}
+.sub-counter,
+nav.social a[subs]::after {
+	content: attr(subs);
+
+	margin: var(--min-padding);
+	padding: var(--min-padding);
+
+	min-width: fit-content;
+
+	border-radius: var(--control-corner-radius);
+	background: var(--background-10);
 }
 
 article {
