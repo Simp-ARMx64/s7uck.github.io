@@ -50,6 +50,8 @@
 	--border-bottom: 1px solid var(--border-muted);
 
 	--animation: 250ms ease;
+	--long-animation: 512ms ease;
+	--longer-animation: 864ms ease;
 }
 @media only screen and (max-width: 800px) {
 	:root {
@@ -59,6 +61,8 @@
 @media (prefers-reduced-motion) {
 	:root {
 		--animation: 0ms;
+		--long-animation: 0ms;
+		--longer-animation: 0ms;
 	}
 }
 
@@ -202,6 +206,7 @@ nav.social a[subs]::before {
 	border-radius: var(--control-corner-radius);
 	background: var(--background-10);
 
+	animation: sub-counter-load var(--longer-animation) forwards alternate;
 	transition: var(--animation);
 }
 nav.social a[subs]:hover::before {
@@ -209,7 +214,46 @@ nav.social a[subs]:hover::before {
 
 	background: var(--primary);
 
+	animation: sub-counter-content var(--longer-animation) forwards alternate;
 	transition: var(--animation);
+}
+nav.social a[subs]:active::before {
+	content: ':D';
+
+	animation: sub-counter-added var(--longer-animation) forwards alternate;
+}
+@keyframes sub-counter-load {
+	0% {
+		content: '++';
+	}
+	50% {
+		color: transparent;
+	}
+	100% {
+		content: attr(subs);
+	}
+}
+@keyframes sub-counter-content {
+	0% {
+		content: attr(subs);
+	}
+	50% {
+		color: transparent;
+	}
+	100% {
+		content: '++';
+	}
+}
+@keyframes sub-counter-added {
+	0% {
+		content: '++';
+	}
+	50% {
+		color: transparent;
+	}
+	100% {
+		content: ':D';
+	}
 }
 
 article,
