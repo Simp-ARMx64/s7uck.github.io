@@ -10,21 +10,26 @@ let telegramSubCount = (chat, api, token) => {
 		             		result = JSON.parse(data).result ?? -1;
 	               });
 	console.log(response);
-}
+};
 
-const socials = {
+let socials = {
 	telegram: {
 		me: 211772602,
 		stucklounge: -1001388295920,
 		bot: '1861542114:AAFEySytSsmFuQ4BslQv22XfBh636O36eNs',
 		api: 'https://api.telegram.org/bot',
-		subCount: telegramSubCount(this.stucklounge, this.api, this.bot)
+		subCount: 0
 	},
 	github: {
 		me: 71439748
 	},
 	youtube: 'UCVX9qM9QKKpQQ8PXSRWs_NA'
-}
+};
+
+socials.telegram.subCount = telegramSubCount(
+	socials.telegram.stucklounge,
+	socials.telegram.api, socials.telegram.bot
+);
 
 let stuckloungeLink = $('nav.social a.telegram.stucklounge');
 stuckloungeLink.attr('subs', socials.telegram.subCount);
