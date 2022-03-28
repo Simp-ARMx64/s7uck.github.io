@@ -260,6 +260,12 @@ article,
 info {
 	max-width: 80ch;
 }
+article.post,
+article.message {
+	margin: var(--standard-padding);
+
+	width: fit-content;
+}
 article section, article > .comments {
 	display: block;
 }
@@ -323,7 +329,8 @@ info::before {
 	background-repeat: no-repeat;
 }
 
-img.propic {
+img.propic,
+article.message::before {
 	margin-top: var(--min-padding);
 	margin-bottom: var(--min-padding);
 

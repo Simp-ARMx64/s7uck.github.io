@@ -5,7 +5,8 @@ let socials = {
 		stucklings: -1001565929365,
 		portal: -1001542175762,
 		bot: '1861542114:AAFEySytSsmFuQ4BslQv22XfBh636O36eNs',
-		api: 'https://api.telegram.org/bot'
+		api: 'https://api.telegram.org/bot',
+		history: {}
 	},
 	github: {
 		me: 71439748
@@ -13,7 +14,30 @@ let socials = {
 	youtube: 'UCVX9qM9QKKpQQ8PXSRWs_NA'
 };
 
-function telegramApiRequest(method, args, then =(data)=> {}) {
+function telegramPost(
+	channel, messageId,
+	accent = '7085B2', darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? true : false
+) {
+	let embedHtml = `<article class='message'>
+		<script id='post__${messageId}' async
+			src="https://telegram.org/js/telegram-widget.js?18"
+			data-telegram-post="${channel}/${messageId}"
+			data-color="${accent}"
+			${darkMode && 'data-dark="1"'}
+		></script>
+	</article>`;
+
+	return {
+		widget: {
+			html: embedHtml
+		}
+	}
+}
+
+function telegramApiRequest(
+	method, args,
+	then =(data)=> {}
+) {
 	let result = {};
 	fetch(
 	`${socials.telegram.api}${socials.telegram.bot}/${method}?${args.join('&')}`
@@ -26,6 +50,23 @@ function telegramApiRequest(method, args, then =(data)=> {}) {
 	});
 };
 
+/* Thanks shishc.at	for the JSON API <3 */
+function shishcatGetChannelHistory(
+	channel, before = 100, after = 100,
+	then =(data)=> {}
+) {
+	let result = {};
+	fetch(
+	`https://shishc.at/sprivatetgparser.php?channel=${channel}&before=${before}&after=${after}`
+	)
+	.then( (response) => { return response.json() })
+	.then( (data) => {
+		then(data);
+		result = data;
+		return result;
+	});
+}
+
 telegramApiRequest(
 	'getChatMemberCount',
 	[`chat_id=${socials.telegram.stucklounge}`],
@@ -34,5 +75,17 @@ telegramApiRequest(
 
 		let stuckloungeLink = $('nav.social a.telegram.stucklounge');
 		stuckloungeLink.attr('subs', socials.telegram.subCount);
+	}
+);
+
+shishcatGetChannelHistory(
+	`stucklounge`, before = 100, after = 100,
+	then =(data)=> {
+		socials.telegram[`history`] = data.msgs;
+
+		Object.keys(socials.telegram.history).reverse().forEach(msgId => {
+			let postWidget = telegramPost(`stucklounge`, msgId);
+			$('#posts').append(postWidget.widget.html);
+		});
 	}
 );
